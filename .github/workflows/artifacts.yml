@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
     job_1:
         name: upload artifact
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-22.04
 
         steps:
             - name: 'Create a local file'
