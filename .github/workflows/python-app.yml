@@ -9,6 +9,8 @@ on:
   pull_request:
     branches: [ "main" ]
 
+  workflow_dispatch: 
+
 permissions:
   contents: read
 
@@ -37,3 +39,21 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+
+
+  build-api:
+    runs-on: windows-latest
+    steps:
+        - run: echo "Building API"
+
+  build-db:
+    needs: build
+    runs-on: windows-latest
+    steps:
+        - run: echo "Hello Windows"
+    
+  package:
+    needs: [build, build-db]
+    runs-on: macos-latest
+    steps: 
+        - run: echo "Hello MacOS  "
