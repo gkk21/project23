@@ -1,0 +1,30 @@
+name: Artifcats demo
+
+on: workflow_dispatch 
+
+jobs:
+    job_1:
+        name: upload artifact
+        runs-on: ubuntu-18.04
+
+        steps:
+            - name: 'Create a local file'
+              run:  echo "Save this line" > file.txt
+            
+            - uses: actions/upload-artifact@v2
+
+              with:
+                name: file
+                path: file.txt
+                retention-days: 2
+
+    job_2:
+        name: download artifact
+        runs-on: ubuntu-22.04
+
+        steps:
+            - uses: actions/download-artifact@v2 
+              with:
+                name: file 
+            - name: Print the file 
+              run: cat file.txt
