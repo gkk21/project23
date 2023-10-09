@@ -18,8 +18,12 @@ jobs:
       testvar: value-2
     
     steps:
+    - name: generate a dynamic value
+      run: |
+         echo "abcd=123" >> $GITHUB_ENV
     - name: print-values-of-env-vars
       run: |
         echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
         echo "testvar  $testvar"
         echo "testvar  ${{ env.testvar }}"
+        echo "abcd = ${{ env.abcd }}"
