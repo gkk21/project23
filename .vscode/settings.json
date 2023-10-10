@@ -1,0 +1,6 @@
+{
+    "gitlens.currentLine.enabled": false,
+    "[yaml]": {
+        "editor.tabSize": 2
+    },
+}

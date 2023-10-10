@@ -1,0 +1,37 @@
+name: Passing Variables
+on: workflow_dispatch
+
+jobs:
+    passing-values-btw-steps:
+        runs-on: ubuntu-22.04
+        # mapping 
+
+        outputs:
+            output1: ${{ steps.var_source_step.outputs.var1_name}}
+
+        steps:
+        - name: Set the value using env 
+          id: step1
+          run: | 
+            echo 'variableName=this-is-env' >> $GITHUB_ENV
+        
+        - name: create variable
+          id: var_source_step
+          run: |
+             echo "::set-output name=var1_name::techskool"
+             echo "::set-output name=var2_name::$(date)"
+        - name: Get variable 
+          run: |
+              echo "Printing value"
+              echo variableName: ${{ env.variableName }}
+              echo var1_name:  ${{ steps.var_source_step.outputs.var1_name}}
+              echo var2_name:  ${{ steps.var_source_step.outputs.var2_name}}
+
+
+    job2:
+        runs-on: ubuntu-22.04
+        needs: passing-values-btw-steps
+        steps:
+        -   run: | 
+                echo "Printing earlier job output"
+                echo output1: ${{needs.passing-values-btw-steps.outputs.output1}}
