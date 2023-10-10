@@ -18,8 +18,10 @@ jobs:
         - name: create variable
           id: var_source_step
           run: |
-             echo "::set-output name=var1_name::techskool"
-             echo "::set-output name=var2_name::$(date)"
+             #echo "::set-output name=var1_name::techskool"
+             echo "var1_name=techskool" >> $GITHUB_OUTPUT
+             #echo "::set-output name=var2_name::$(date)"
+             echo "var2_name=$(date)" >> $GITHUB_OUTPUT
         - name: Get variable 
           run: |
               echo "Printing value"
