@@ -1,0 +1,16 @@
+name: GitHub Environments 
+
+on:
+    workflow_dispatch: 
+
+jobs:
+    deployment:
+        runs-on: ubuntu-22.04
+        environment: 
+            name: Dev
+            url: https://github.com 
+        
+        steps:
+          - name: 'print secret from environment'
+            run: |
+                echo "my secret : ${{ MY_SECRET }}"
