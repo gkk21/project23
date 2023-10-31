@@ -1,6 +1,9 @@
 {
     "gitlens.currentLine.enabled": false,
-    "[yaml]": {
+    "[yml]": {
+        "editor.tabSize": 2
+    },
+    "[shellscript]": {
         "editor.tabSize": 2
     },
 }
